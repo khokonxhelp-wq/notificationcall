@@ -2,7 +2,7 @@
 
 A lightweight Flask server that bridges the **PHP web application** (`index.php`) and the **Android native app** for real-time notifications and group call alerts.
 
-**Live URL:** `https://notificationcall.render.com`
+**Live URL:** `https://notificationcall.onrender.com`
 
 ---
 
@@ -63,8 +63,8 @@ Render will deploy and provide a URL like:
 
 ### 3. Custom Domain (optional)
 
-To use `https://notificationcall.render.com`:
-- Go to **Settings** → **Custom Domains** → Add `notificationcall.render.com`
+To use `https://notificationcall.onrender.com`:
+- Go to **Settings** → **Custom Domains** → Add `notificationcall.onrender.com`
 - Add the CNAME record in your DNS provider as instructed
 
 ---
@@ -220,7 +220,7 @@ Render health check.
 
 ### Test /notify (send a fake call notification)
 ```bash
-curl -X POST https://notificationcall.render.com/notify \
+curl -X POST https://notificationcall.onrender.com/notify \
   -H "Content-Type: application/json" \
   -d '{
     "type":"call",
@@ -234,12 +234,12 @@ curl -X POST https://notificationcall.render.com/notify \
 
 ### Test /api/poll (Android will call this)
 ```bash
-curl "https://notificationcall.render.com/api/poll?device_id=test123"
+curl "https://notificationcall.onrender.com/api/poll?device_id=test123"
 ```
 
 ### Test /api/calls/active
 ```bash
-curl https://notificationcall.render.com/api/calls/active
+curl https://notificationcall.onrender.com/api/calls/active
 ```
 
 ---
@@ -279,7 +279,7 @@ In `index.php`, the `post_external_notification()` function POSTs to `/notify`:
 function post_external_notification($payload){
     $ch = curl_init();
     curl_setopt_array($ch, [
-        CURLOPT_URL => 'https://notificationcall.render.com/notify',
+        CURLOPT_URL => 'https://notificationcall.onrender.com/notify',
         CURLOPT_POST => true,
         CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
         CURLOPT_POSTFIELDS => json_encode($payload),
